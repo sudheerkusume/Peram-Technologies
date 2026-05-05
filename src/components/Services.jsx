@@ -31,7 +31,7 @@ import Sec2 from '../assets/Security1.png';
 import Sec3 from '../assets/Security2.png';
 import Lan1 from '../assets/Lan1.png';
 import Lan2 from '../assets/Lan2.png';
-import Secu1 from '../assets/Secu1.png';
+import Secu1 from '../assets/secu1.png';
 import Secu2 from '../assets/Secu2.png';
 import Secu3 from '../assets/Secu3.png';
 import fire from '../assets/Fire.png';
