@@ -72,7 +72,7 @@
 }
 
 .navbar.scrolled .nav-links {
-  color: #334155;
+  color: var(--primary-color);
 }
 
 .nav-links::after {
@@ -109,28 +109,37 @@
   padding: 0.6rem;
   margin: 0;
   list-style: none;
-  background: rgba(15, 23, 42, 0.96);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(17, 45, 78, 0.1);
   border-radius: 10px;
-  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.45);
+  box-shadow: 0 14px 30px rgba(17, 45, 78, 0.15);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, transform 0.2s ease;
   z-index: 999;
 }
 
-.services-dropdown li a {
+.services-dropdown li a,
+.dropdown-link-btn {
   display: block;
+  width: 100%;
+  text-align: left;
   text-decoration: none;
-  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
   padding: 0.5rem 0.65rem;
   border-radius: 7px;
   font-size: 0.92rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
 }
 
-.services-dropdown li a:hover {
-  background: rgba(59, 130, 246, 0.16);
-  color: #bfdbfe;
+.services-dropdown li a:hover,
+.dropdown-link-btn:hover {
+  background: rgba(0, 160, 227, 0.1);
+  color: var(--primary-color);
 }
 
 .nav-item-services:hover .services-dropdown {
@@ -146,7 +155,7 @@
   border-radius: 50px;
   height: auto;
   margin-left: 1rem;
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 160, 227, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -156,8 +165,8 @@
 
 .nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
-  background-color: #2563eb;
+  box-shadow: 0 6px 20px rgba(0, 160, 227, 0.6);
+  background-color: #f58220;
 }
 
 .menu-icon {
@@ -174,7 +183,7 @@
 }
 
 .navbar.scrolled .bar {
-  background-color: #0f172a;
+  background-color: #112d4e;
 }
 
 @media screen and (max-width: 960px) {
@@ -223,7 +232,7 @@
     text-align: center;
     width: 100%;
     display: table;
-    color: #0f172a !important;
+    color: #112d4e !important;
     font-size: 1rem;
   }
 
@@ -254,14 +263,14 @@
   }
 
   .services-dropdown li a {
-    color: #0f172a;
+    color: #112d4e;
     font-size: 0.9rem;
     padding: 0.43rem 0.5rem;
   }
 
   .services-dropdown li a:hover {
-    color: #1d4ed8;
-    background: rgba(59, 130, 246, 0.12);
+    color: #e0701b;
+    background: rgba(0, 160, 227, 0.12);
   }
 
   .nav-cta {

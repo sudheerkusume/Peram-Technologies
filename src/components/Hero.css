@@ -1,75 +1,69 @@
 .hero {
   height: 100vh;
-  overflow: hidden;
   position: relative;
-  background-color: #000;
+  overflow: hidden;
+  color: white;
 }
 
-.slide {
+/* WebGL Canvas */
+.webgl-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  will-change: filter, transform, opacity;
+  inset: 0;
+  z-index: 0;
 }
 
-.bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.7);
-  will-change: transform;
-}
-
+/* Overlay */
 .overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-      circle at 20% 50%,
-      rgba(59, 130, 246, 0.25),
-      transparent 60%
-    ),
-    linear-gradient(
-      to right,
-      rgba(15, 23, 42, 0.9),
-      rgba(15, 23, 42, 0.6),
-      rgba(15, 23, 42, 0.3)
-    );
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(10, 25, 47, 0.9),
+      rgba(10, 25, 47, 0.6));
+  z-index: 1;
 }
 
-.content {
+/* Layout */
+.container {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
-  padding: 100px 40px;
-  color: white;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 80px;
 }
 
-.content h1 {
-  font-size: 4rem;
+/* LEFT */
+.left {
+  max-width: 600px;
+}
+
+.left h1 {
+  font-size: 3.5rem;
   font-weight: 800;
-  line-height: 1.1;
 }
 
-.content h1 .highlight {
-  color: #60a5fa;
+.left h1 .highlight-text {
   display: inline-block;
-  margin-top: 10px;
+  background: linear-gradient(135deg, #00c6ff, #ff7a18, #00c6ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
 }
 
-.content p {
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.left p {
   margin-top: 20px;
-  font-size: 1.2rem;
-  max-width: 500px;
-  color: #e2e8f0;
+  color: rgba(255, 255, 255, 0.8);
 }
 
+/* Buttons */
 .buttons {
   margin-top: 30px;
   display: flex;
@@ -77,186 +71,93 @@
 }
 
 .primary {
-  display: inline-block;
-  background: rgba(59, 130, 246, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: 0.3s;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border-radius: 30px;
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
   color: white;
-  cursor: pointer;
-  font-weight: 600;
   text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 122, 24, 0.4);
+  display: inline-block;
 }
 
 .primary:hover {
-  transform: translateY(-3px) scale(1.05);
-  background: rgba(59, 130, 246, 0.9);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 122, 24, 0.6);
 }
 
-.secondary {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: 0.3s;
-  padding: 14px 30px;
+.whatsapp {
+  padding: 14px 28px;
   border-radius: 30px;
+  background: #25d366;
   color: white;
-  cursor: pointer;
-  font-weight: 600;
   text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  display: inline-block;
 }
 
-.secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px);
+.whatsapp:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: #20b858;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
 }
 
-.progress {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  width: 250px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  overflow: hidden;
-  z-index: 10;
+/* RIGHT */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 20px;
+  width: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.progress-fill {
-  height: 100%;
-  background: #3b82f6;
-  animation: load 6s linear forwards;
+.glass-card h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00c6ff;
 }
 
-@keyframes load {
-  from { width: 0; }
-  to { width: 100%; }
+.glass-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    height: 92vh;
-    min-height: 620px;
-  }
-
-  .content {
-    text-align: center;
-    padding: 72px 16px 90px;
-    align-items: center;
-  }
-
-  .content h1 {
-    font-size: 1.85rem;
-    line-height: 1.25;
-  }
-
-  .content p {
-    margin-top: 14px;
-    font-size: 0.95rem;
-    max-width: 340px;
-  }
-
-  .buttons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 240px;
-    gap: 10px;
-  }
-
-  .primary,
-  .secondary {
-    padding: 10px 16px;
-    font-size: 0.88rem;
-    border-radius: 24px;
-    text-align: center;
-  }
-
-  .progress {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 30px;
-    width: 200px;
-  }
-}
-
-/* Slide Counter */
-.slide-counter {
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
+.glass-card li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: white;
-  font-family: monospace;
+  gap: 12px;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.card-icon {
+  color: #ff7a18;
   font-size: 1.2rem;
-  z-index: 10;
-  letter-spacing: 2px;
 }
 
-.slide-counter .current {
-  font-weight: 800;
-  color: #3b82f6;
-}
-
-.slide-counter .divider {
-  width: 30px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.slide-counter .total {
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-}
-
-.mouse {
-  width: 26px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-}
-
-.wheel {
-  width: 4px;
-  height: 8px;
-  background: white;
-  border-radius: 2px;
-  animation: scroll 1.5s infinite;
-}
-
-@keyframes scroll {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(15px); opacity: 0; }
-}
-
+/* Mobile */
 @media (max-width: 768px) {
-  .slide-counter {
-    top: 30px;
-    bottom: auto;
-    right: 18px;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
   }
-  .scroll-indicator {
-    display: none;
+
+  .left h1 {
+    font-size: 2.2rem;
+  }
+
+  .right {
+    margin-top: 30px;
   }
 }

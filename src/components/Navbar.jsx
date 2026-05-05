@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo1.png';
 
 const serviceMenuItems = [
-  { label: 'CCTV Cameras', href: '#services' },
-  { label: 'Intercom Systems', href: '#services' },
-  { label: 'Biometric Attendance', href: '#services' },
-  { label: 'Door Access Control', href: '#services' },
-  { label: 'LAN Networking', href: '#services' },
-  { label: 'Intrusion Alarm Systems', href: '#services' },
-  { label: 'Fire Safety & Alarms', href: '#fire-safety-alarms' },
-  { label: 'PA Systems', href: '#pa-systems' },
-  { label: 'Firewall & Security', href: '#firewall-security' },
-  { label: 'Wi-Fi Access', href: '#wifi-access' },
-  { label: 'Data Servers', href: '#data-servers' },
+  { id: 1, label: 'CCTV Cameras', tab: 'services' },
+  { id: 2, label: 'Intercom Systems', tab: 'services' },
+  { id: 3, label: 'Biometric Attendance', tab: 'services' },
+  { id: 4, label: 'Door Access Control', tab: 'services' },
+  { id: 5, label: 'LAN Networking', tab: 'services' },
+  { id: 6, label: 'Intrusion Alarm Systems', tab: 'services' },
+  { id: 7, label: 'Fire Safety & Alarms', tab: 'services' },
+  { id: 8, label: 'PA Systems', tab: 'services' },
+  { id: 9, label: 'Firewall & Security', tab: 'services' },
+  { id: 10, label: 'Wi-Fi Access', tab: 'services' },
+  { id: 11, label: 'Data Servers', tab: 'services' },
 ];
 
 const Navbar = () => {
@@ -23,29 +23,27 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (!menuOpen) {
-      setServicesOpen(false);
-    }
-  }, [menuOpen]);
+  const navigateToService = (id, tab) => {
+    // Close menus
+    setMenuOpen(false);
+    setServicesOpen(false);
 
-  const handleServicesClick = (e) => {
-    if (window.innerWidth <= 960) {
-      e.preventDefault();
-      setServicesOpen((prev) => !prev);
-    } else {
-      setMenuOpen(false);
+    // Emit global event for SolutionsHub and child components
+    const navEvent = new CustomEvent('peram-nav-service', {
+      detail: { id, tab }
+    });
+    window.dispatchEvent(navEvent);
+
+    // Smooth scroll to the hub section
+    const target = document.getElementById('solutions');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -71,21 +69,26 @@ const Navbar = () => {
           </li>
           <li className="nav-item nav-item-services">
             <a
-              href="#services"
+              href="#solutions"
               className="nav-links services-trigger"
-              onClick={handleServicesClick}
+              onClick={(e) => {
+                if (window.innerWidth <= 960) {
+                  e.preventDefault();
+                  setServicesOpen(!servicesOpen);
+                }
+              }}
             >
               Services
             </a>
             <ul className={`services-dropdown ${servicesOpen ? 'mobile-open' : ''}`}>
               {serviceMenuItems.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} onClick={() => {
-                    setMenuOpen(false);
-                    setServicesOpen(false);
-                  }}>
+                  <button
+                    className="dropdown-link-btn"
+                    onClick={() => navigateToService(item.id, item.tab)}
+                  >
                     {item.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>

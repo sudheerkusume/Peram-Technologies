@@ -1,13 +1,16 @@
 import React from 'react';
 import './Footer.css';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import logo from '../assets/logo1.png';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3 className="footer-brand">Peram <span>Tech</span></h3>
+          <div className="footer-logo">
+            <img src={logo} alt="Peram Technologies" />
+          </div>
           <p className="footer-desc">
             Securing your world with intelligence through trusted surveillance, security, and networking solutions.
           </p>
